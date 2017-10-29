@@ -1,1 +1,21 @@
 h1 Our Chat
+
+- if chat_messages.any?
+  table.table.table-striped.table-hover
+    tbody
+      - chat_messages.each do |message|
+        tr
+          td
+            b #{message.user.name} said:
+            br
+            p #{message.text}
+- else
+  div.no-messages
+    h3 No messages yet! Please add some :)
+
+div.add-message
+  h3 Add message
+  = form_for :message, url: message_path do |f|
+    = f.text_area :text, placeholder: 'Message', size: '30x5', class: 'form-control'
+    br
+    button.btn.btn-primary Send message
