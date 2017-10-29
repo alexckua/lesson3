@@ -6,7 +6,7 @@ h1 Our Chat
       - chat_messages.each do |message|
         tr
           td
-            b #{message.user.name} said:
+            b #{message.user.name} said at #{message.created_at.to_formatted_s(:short)}:
             br
             p #{message.text}
 - else
