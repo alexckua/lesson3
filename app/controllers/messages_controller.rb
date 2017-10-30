@@ -7,11 +7,22 @@ class MessagesController < ApplicationController
     else
       message = @message.errors.full_messages.to_sentence
     end
+  end
 
-    redirect_to chat_path, notice: message
+  def like
+    message.increment!(:likes)
+  end
+
+  def dislike
+    # TODO
   end
 
   private
+
+  def message
+    @message ||= Message.find(params[:id])
+  end
+  helper_method :message
 
   def message_params
     params.require(:message).permit(:text)

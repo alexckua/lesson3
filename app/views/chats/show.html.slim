@@ -1,21 +1,12 @@
 h1 Our Chat
 
-- if chat_messages.any?
-  table.table.table-striped.table-hover
-    tbody
-      - chat_messages.each do |message|
-        tr
-          td
-            b #{message.user.name} said at #{message.created_at.to_formatted_s(:short)}:
-            br
-            p #{message.text}
-- else
-  div.no-messages
-    h3 No messages yet! Please add some :)
+table#chat.table.table-striped.table-hover
+  tbody
+    = render chat_messages
 
 div.add-message
   h3 Add message
-  = form_for :message, url: message_path do |f|
-    = f.text_area :text, placeholder: 'Message', size: '30x5', class: 'form-control'
+  = form_for :message, url: message_path, remote: true do |f|
+    = f.text_area :text, placeholder: 'Message', required: true, size: '30x5', class: 'form-control'
     br
     button.btn.btn-primary Send message

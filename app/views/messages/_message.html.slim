@@ -1,0 +1,9 @@
+tr id="message_#{message.id}"
+  td
+    b #{message.user_name} said at #{message.created_at.to_formatted_s(:short)}:
+    br
+    p
+      = message.text
+      br
+      span=> message.likes
+      = link_to 'Like', like_message_path(message), method: :post, remote: true
