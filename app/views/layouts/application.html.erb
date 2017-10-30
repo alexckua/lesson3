@@ -9,12 +9,26 @@
   </head>
 
   <body>
-    <p><%= flash[:notice] %></p>
-    <%= current_user&.name %>
-    <% if current_user %>
-      |
-      <%= link_to 'Log Out', session_path, method: :delete %>
-    <% end %>
-    <%= yield %>
+
+    <%= render 'layouts/header.html.slim' %>
+
+    <div class="container" >
+
+      <% if flash[:notice] %>
+
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">Warning</h3>
+            </div>
+            <div class="panel-body">
+              <%= flash[:notice] %>
+            </div>
+          </div>
+
+      <% end %>
+
+      <%= yield %>
+    </div>
+
   </body>
 </html>

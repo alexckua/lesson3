@@ -1,0 +1,20 @@
+// Basic app styles
+
+img {
+  &.profile-image {
+    position: relative;
+    top: -24px;
+    left: -10px;
+    height: 40px;
+    vertical-align: middle;
+    margin-bottom: -45px;
+  }
+}
+
+div{
+
+  .no-messages {
+
+    margin: 50px 0;
+  }
+}

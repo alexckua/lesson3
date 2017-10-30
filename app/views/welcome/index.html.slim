@@ -1,7 +1,14 @@
-h1 Test
-= form_for :user, url: session_path do |f|
-  = f.email_field :email, placeholder: 'Email'
-  br
-  = f.text_field :name, placeholder: 'Name'
-  br
-  button OK
+= form_for :user, url: session_path, :html => { class: 'form-horizontal' } do |f|
+  fieldset
+    legend Log in
+    .form-group
+      = f.label :email, 'Email', class: 'col-lg-2 control-label'
+      .col-lg-10
+        = f.email_field :email, placeholder: 'Email', class: 'form-control'
+    .form-group
+      = f.label :name, 'Name', class: 'col-lg-2 control-label'
+      .col-lg-10
+        = f.text_field :name, placeholder: 'Name', class: 'form-control'
+    .form-group
+      .col-lg-10.col-lg-offset-2
+        button.btn.btn-primary type="submit"  Submit
