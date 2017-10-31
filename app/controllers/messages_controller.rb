@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
   end
 
   def dislike
-    # TODO
+    message.increment!(:dislikes)
   end
 
   private

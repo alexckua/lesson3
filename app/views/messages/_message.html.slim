@@ -5,5 +5,8 @@ tr id="message_#{message.id}"
     p
       = message.text
       br
-      span=> message.likes
+      span_likes=> message.likes
       = link_to 'Like', like_message_path(message), method: :post, remote: true
+      |&nbsp;
+      span_dislikes=> message.dislikes
+      = link_to 'Dislike', dislike_message_path(message), method: :post, remote: true
