@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def create
     @message = current_user.messages.create(message_params)
-
+    #p params
     if @message.valid?
       message = 'Message has been added'
     else
@@ -15,6 +15,27 @@ class MessagesController < ApplicationController
 
   def dislike
     message.increment!(:dislikes)
+  end
+
+  def edit
+    p params
+    @message = Message.find(params[:id])
+    #@message = message
+    #@message.update_attributes(message_params)
+    #redirect_to root_path
+  end
+
+  def update
+    @message = Message.find(params[:id])
+    if @message.update_attributes(message_params)
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    message.destroy
   end
 
   private

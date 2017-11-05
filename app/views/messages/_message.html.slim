@@ -2,11 +2,18 @@ tr id="message_#{message.id}"
   td
     b #{message.user_name} said at #{message.created_at.to_formatted_s(:short)}:
     br
-    p
       = message.text
-      br
+    br
       span_likes=> message.likes
-      = link_to 'Like', like_message_path(message), method: :post, remote: true
+      = link_to like_message_path(message), method: :post, remote: true do
+        i.glyphicon.glyphicon-thumbs-up
       |&nbsp;
       span_dislikes=> message.dislikes
-      = link_to 'Dislike', dislike_message_path(message), method: :post, remote: true
+      = link_to dislike_message_path(message), method: :post, remote: true do
+        i.glyphicon.glyphicon-thumbs-down
+      nbsp
+      nbsp
+    td
+      = link_to 'Destroy', destroy_message_path(message), method: :delete, data: {confirm: 'Are you sure?'}, remote: true
+      br
+      = link_to 'Edit', edit_message_path(message), method: :patch
