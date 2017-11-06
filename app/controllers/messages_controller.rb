@@ -18,21 +18,10 @@ class MessagesController < ApplicationController
   end
 
   def edit
-    #p params
-    @message = message
   end
 
   def update
-    @message = message
-    if is_my_message?(message)
-      if @message.update_attributes(message_params)
-        redirect_to root_path
-      else
-        render 'edit'
-      end
-    else
-      redirect_to chat_path,  notice: 'Haha. Nothing you can not do.Cunning Ass'
-    end
+    message.update_attributes(message_params)
   end
 
   def destroy
@@ -46,7 +35,7 @@ class MessagesController < ApplicationController
   private
 
   def message
-    @message ||= Message.find(params[:id])
+    @message ||= current_user.messages.find(params[:id])
   end
   helper_method :message
 

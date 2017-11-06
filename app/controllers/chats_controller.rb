@@ -3,6 +3,11 @@ class ChatsController < ApplicationController
 
   private
 
+  def message
+    @message ||= Message.new
+  end
+  helper_method :message
+
   def chat_messages
     Message.all.includes(:user).order('created_at ASC')
   end
