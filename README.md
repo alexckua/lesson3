@@ -1,5 +1,3 @@
-- Implement dislikes
-- Edit only my messages
-- Delete only my messages
-- Display avatar on message
-- Align my messages to right all other to left
+- User can vote only once (like/dislike) similar to youtube (use `counter_cache`)
+- Add message search/filtering (one field should filter messages dynamicaly while typing)
+- Add pagination (display 20 messages per page) `kaminari` || `will_paginate`
