@@ -1,5 +1,7 @@
 tr id="message_#{message.id}"
   td
+    = image_tag message.user.gravatar_url, size: "80x80"
+  td
     b #{message.user_name} said at #{message.created_at.to_formatted_s(:short)}:
     br
       = message.text
@@ -17,3 +19,4 @@ tr id="message_#{message.id}"
       = link_to 'Destroy', destroy_message_path(message), method: :delete, data: {confirm: 'Are you sure?'}, remote: true
       br
       = link_to 'Edit', edit_message_path(message), method: :patch
+

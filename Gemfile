@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'slim-rails'
 gem 'gravatar-ultimate'
+gem 'gravtastic'
 gem 'xmlrpc'
 
 gem 'bootstrap-sass', '~> 3.3.6'

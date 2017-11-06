@@ -13,6 +13,9 @@ class SessionsController < ApplicationController
 
   def destroy
     current_user.destroy
+      Message.where(user_id: nil).find_each do |user|
+      user.update_attributes(user_id: 1)
+    end
     reset_session
     redirect_to :root, notice: 'You\'re logged out'
   end
@@ -22,4 +25,9 @@ class SessionsController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :name)
   end
+end
+
+
+Message.where(user_id: nil).find_each do |user|
+  user.update_attributes(user_id: 1)
 end
