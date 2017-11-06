@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   private
 
   def chat_messages
-    Message.all.includes(:user)
+    Message.all.includes(:user).order('created_at ASC')
   end
   helper_method :chat_messages
 

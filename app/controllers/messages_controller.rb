@@ -18,24 +18,29 @@ class MessagesController < ApplicationController
   end
 
   def edit
-    p params
-    @message = Message.find(params[:id])
-    #@message = message
-    #@message.update_attributes(message_params)
-    #redirect_to root_path
+    #p params
+    @message = message
   end
 
   def update
-    @message = Message.find(params[:id])
-    if @message.update_attributes(message_params)
-      redirect_to root_path
+    @message = message
+    if is_my_message?(message)
+      if @message.update_attributes(message_params)
+        redirect_to root_path
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      redirect_to chat_path,  notice: 'Haha. Nothing you can not do.Cunning Ass'
     end
   end
 
   def destroy
-    message.destroy
+    if is_my_message?(message)
+      message.destroy
+    else
+      redirect_to chat_path,  notice: 'Haha. Nothing you can not do.Cunning Ass'
+    end
   end
 
   private
@@ -48,5 +53,4 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:text)
   end
-
 end
