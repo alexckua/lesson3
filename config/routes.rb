@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
   resource :chat, only: :show
+  post 'chat' => 'chats#show'
   resource :welcome, only: :index
   resources :messages
   post 'messages/:id/like', to: 'messages#like', as: :like_message

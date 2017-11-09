@@ -1,12 +1,6 @@
 class MessagesController < ApplicationController
   def create
     @message = current_user.messages.create(message_params)
-    #p params
-    if @message.valid?
-      message = 'Message has been added'
-    else
-      message = @message.errors.full_messages.to_sentence
-    end
   end
 
   def like

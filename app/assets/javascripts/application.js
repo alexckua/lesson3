@@ -16,3 +16,7 @@
 
 //= require jquery
 //= require bootstrap-sprockets
+
+$(document).on('keyup', '#search-messages', function() {
+  $('.searching').find('button').click();
+});

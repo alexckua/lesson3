@@ -26,7 +26,13 @@
           </div>
 
       <% end %>
-
+      <div class="searching">
+          <form action="/chat" data-remote="true" method="post">
+            <input type="hidden" name="page" value="<%= chat_messages.current_page %>">
+            <input id="search-messages" type="text" name="search">
+            <button></button>
+          </form>
+      </div>
       <%= yield %>
     </div>
 
