@@ -62,7 +62,7 @@ class MessagesController < ApplicationController
   private
 
   def message
-    @message ||= current_user.messages.find(params[:id])
+    @message ||= Message.find(params[:id])
   end
   helper_method :message
 
