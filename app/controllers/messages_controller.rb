@@ -6,45 +6,9 @@ class MessagesController < ApplicationController
   def vote
     vote = Vote.where(user_id: current_user.id, message_id: message.id)
     if vote.count.zero?
-      if params[:like]
-        message.increment!(:likes)
-        message.votes.create(user_id: current_user.id, vote: :like)
-      elsif params[:dislike]
-        message.increment!(:dislikes)
-        message.votes.create(user_id: current_user.id, vote: :dislike)
-      end
+      message.vote(params, current_user)
     else
-      change_vote(vote.first, message)
-    end
-  end
-
-  def change_vote(vote, message)
-    if params[:like]
-      case vote.vote
-        when 'like' then
-          vote.update(vote: :no_vote)
-          message.decrement!(:likes)
-        when 'dislike' then
-          vote.update(vote: :like)
-          message.decrement!(:dislikes)
-          message.increment!(:likes)
-        when 'no_vote' then
-          vote.update(vote: :like)
-          message.increment!(:likes)
-      end
-    elsif params[:dislike]
-      case vote.vote
-        when 'like' then
-          vote.update(vote: :dislike)
-          message.decrement!(:likes)
-          message.increment!(:dislikes)
-        when 'dislike' then
-          vote.update(vote: :no_vote)
-          message.decrement!(:dislikes)
-        when 'no_vote' then
-          vote.update(vote: :dislike)
-          message.increment!(:dislikes)
-      end
+      message.change_vote(params, vote.first)
     end
   end
 

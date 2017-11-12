@@ -1,1 +1,2 @@
 $('#chat tbody').html('<%= j(render chat_messages) %>')
+$('.navigation-main').html('<%= j(paginate chat_messages, remote: true) %>')
