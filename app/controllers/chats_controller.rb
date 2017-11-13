@@ -9,11 +9,7 @@ class ChatsController < ApplicationController
   helper_method :message
 
   def chat_messages
-    if params[:search] && !params[:search].blank?
-      Message.where("text LIKE ?", "%#{params[:search]}%").includes(:user).order(created_at: :asc).page(1)
-    else
-      Message.all.includes(:user).order(created_at: :asc).page(params[:page]).per(20)
-    end
+    Message.chat(params[:search], params[:page])
   end
   helper_method :chat_messages
 

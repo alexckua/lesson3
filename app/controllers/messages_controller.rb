@@ -4,12 +4,7 @@ class MessagesController < ApplicationController
   end
 
   def vote
-    vote = Vote.where(user_id: current_user.id, message_id: message.id)
-    if vote.count.zero?
-      message.vote(params, current_user)
-    else
-      message.change_vote(params, vote.first)
-    end
+    message.vote(params[:vote], current_user)
   end
 
   def edit

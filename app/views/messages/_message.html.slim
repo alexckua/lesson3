@@ -6,12 +6,12 @@
       br
         = message.text
       br
-        span_likes=> message.likes
-        = link_to vote_message_path(message, like: true), method: :post, remote: true do
+        span_likes=> message.likes_count
+        = link_to vote_message_path(message, vote: :like), method: :post, remote: true do
           i.glyphicon.glyphicon-thumbs-up
         |&nbsp;
-        span_dislikes=> message.dislikes
-        = link_to vote_message_path(message, dislike: true), method: :post, remote: true do
+        span_dislikes=> message.dislikes_count
+        = link_to vote_message_path(message, vote: :dislike), method: :post, remote: true do
           i.glyphicon.glyphicon-thumbs-down
         nbsp
         nbsp

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'chat' => 'chats#show'
   resource :welcome, only: :index
   resources :messages, only: [:create, :edit, :update, :destroy] do
-    post :vote, on: :member
+    post ':vote', action: :vote, on: :member, as: :vote, constraints: { vote: /(like|dislike)/ }
   end
   root 'welcome#index'
 end

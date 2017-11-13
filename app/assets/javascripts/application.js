@@ -18,5 +18,5 @@
 //= require bootstrap-sprockets
 
 $(document).on('keyup', '#search-messages', function() {
-  $('.searching').find('button').click();
+  Rails.fire(this.form, 'submit');
 });
