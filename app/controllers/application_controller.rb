@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   def is_my_message?(message)
-    (current_user&.id === message.user&.id) ? true : false
+    current_user&.id === message.user&.id
   end
-  
+
   helper_method :is_my_message?
   helper_method :current_user
   helper_method :gravatar_user_image

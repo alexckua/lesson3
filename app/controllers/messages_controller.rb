@@ -1,20 +1,15 @@
 class MessagesController < ApplicationController
   def create
     @message = current_user.messages.create(message_params)
-    #p params
-    if @message.valid?
-      message = 'Message has been added'
+  end
+
+  def vote
+    vote = Vote.where(user_id: current_user.id, message_id: message.id)
+    if vote.count.zero?
+      message.vote(params, current_user)
     else
-      message = @message.errors.full_messages.to_sentence
+      message.change_vote(params, vote.first)
     end
-  end
-
-  def like
-    message.increment!(:likes)
-  end
-
-  def dislike
-    message.increment!(:dislikes)
   end
 
   def edit
@@ -25,17 +20,13 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    if is_my_message?(message)
-      message.destroy
-    else
-      redirect_to chat_path,  notice: 'Haha. Nothing you can not do.Cunning Ass'
-    end
+    message.destroy if is_my_message?(message)
   end
 
   private
 
   def message
-    @message ||= current_user.messages.find(params[:id])
+    @message ||= Message.find(params[:id])
   end
   helper_method :message
 

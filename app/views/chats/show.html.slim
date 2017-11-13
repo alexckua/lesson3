@@ -1,5 +1,6 @@
 h1 Our Chat
-
+.navigation-main
+  = paginate chat_messages, remote: true
 table#chat.table.table-striped.table-hover
   tbody
     = render chat_messages
