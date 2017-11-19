@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :messages, only: [:create, :edit, :update, :destroy] do
     post ':vote', action: :vote, on: :member, as: :vote, constraints: { vote: /(like|dislike)/ }
   end
+  resources 'forgot_password', only: [:new, :create, :edit, :update], :path => 'forgot-password'
   root 'welcome#index'
 end

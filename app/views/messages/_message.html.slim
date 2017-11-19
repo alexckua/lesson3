@@ -1,22 +1,22 @@
-  tr id="message_#{message.id}"
-    td
-      = image_tag message.user.gravatar_url, size: "80x80"
-    td align="right"
-      b #{message.user_name} said at #{message.created_at.to_formatted_s(:short)}:
-      br
-        = message.text
-      br
-        span_likes=> message.likes_count
-        = link_to vote_message_path(message, vote: :like), method: :post, remote: true do
-          i.glyphicon.glyphicon-thumbs-up
-        |&nbsp;
-        span_dislikes=> message.dislikes_count
-        = link_to vote_message_path(message, vote: :dislike), method: :post, remote: true do
-          i.glyphicon.glyphicon-thumbs-down
-        nbsp
-        nbsp
-    - if message.user_id == current_user.id
-        td
-          = button_to 'Destroy', message_path(message), method: :delete, data: {confirm: 'Are you sure?'}, remote: true
-          br
-          = button_to 'Edit', edit_message_path(message), remote: true, method: :get
+tr id="message_#{message.id}"
+  td
+    = image_tag message.user.gravatar_url, size: "80x80"
+  td align="right"
+    b #{message.user_name} said at #{message.created_at.to_formatted_s(:short)}:
+    br
+      = message.text
+    br
+      span_likes=> message.likes_count
+      = link_to vote_message_path(message, vote: :like), method: :post, remote: true do
+        i.glyphicon.glyphicon-thumbs-up
+      |&nbsp;
+      span_dislikes=> message.dislikes_count
+      = link_to vote_message_path(message, vote: :dislike), method: :post, remote: true do
+        i.glyphicon.glyphicon-thumbs-down
+      nbsp
+      nbsp
+  - if message.user_id == current_user.id
+      td
+        = button_to 'Destroy', message_path(message), method: :delete, data: {confirm: 'Are you sure?'}, remote: true
+        br
+        = button_to 'Edit', edit_message_path(message), remote: true, method: :get
