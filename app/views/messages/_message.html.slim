@@ -1,10 +1,10 @@
-tr id="message_#{message.id}"
-  td
+li id="message_#{message.id}" class="#{ (message.user_id == current_user.id) ? 'self' : 'other' }"
+  .avatar
     = image_tag message.user.gravatar_url, size: "80x80"
-  td align="right"
-    b #{message.user_name} said at #{message.created_at.to_formatted_s(:short)}:
-    br
-      = message.text
+    span.author => message.user_name
+  .msg
+    p => message.text
+    time #{message.created_at.to_formatted_s(:short)}
     br
       span_likes=> message.likes_count
       = link_to vote_message_path(message, vote: :like), method: :post, remote: true do
@@ -13,10 +13,8 @@ tr id="message_#{message.id}"
       span_dislikes=> message.dislikes_count
       = link_to vote_message_path(message, vote: :dislike), method: :post, remote: true do
         i.glyphicon.glyphicon-thumbs-down
-      nbsp
-      nbsp
   - if message.user_id == current_user.id
-      td
-        = button_to 'Destroy', message_path(message), method: :delete, data: {confirm: 'Are you sure?'}, remote: true
-        br
-        = button_to 'Edit', edit_message_path(message), remote: true, method: :get
+    div.user-buttons
+      = button_to 'Destroy', message_path(message), method: :delete, class: 'delete-message-btn', data: {confirm: 'Are you sure?'}, remote: true
+      br
+      = button_to 'Edit', edit_message_path(message), remote: true, method: :get, class: 'edit-message-btn'

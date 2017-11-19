@@ -10,13 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-
-//= require jquery
+//
 //= require bootstrap-sprockets
+//= require jquery.infinite-pages
+//= require chat
 
 $(document).on('keyup', '#search-messages', function() {
   Rails.fire(this.form, 'submit');
 });
+

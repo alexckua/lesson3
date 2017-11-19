@@ -1,5 +1,6 @@
 class ChatsController < ApplicationController
   before_action :require_user
+  before_action lambda { @body_class = 'chat-page' }
 
   private
 
@@ -9,7 +10,7 @@ class ChatsController < ApplicationController
   helper_method :message
 
   def chat_messages
-    Message.chat(params[:search], params[:page])
+    Message.chat(params[:search], params[:page]).per(10)
   end
   helper_method :chat_messages
 

@@ -1,2 +1,8 @@
-$('#chat tbody').html('<%= j(render chat_messages) %>')
-$('.navigation-main').html('<%= j(paginate chat_messages, remote: true) %>')
+$('<%= j(render chat_messages) %>').appendTo($(".chat .pane"));
+
+// Update pagination link
+<% if chat_messages.last_page? %>
+  $('.pagination').html("That's all, folks!");
+<% else %>
+  $('.pagination').html("<%=j link_to_next_page(chat_messages, 'Next Page', :remote => true) %>");
+<% end %>

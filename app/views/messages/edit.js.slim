@@ -1,1 +1,2 @@
-| $("#message_#{message.id}").html("<td>#{ j(render 'form', button: 'Update') }</td>")
+|
+  $("#message_#{message.id} .msg").append("<div class='edit-message'>#{ j(render 'form', button: 'Update') }</div>")

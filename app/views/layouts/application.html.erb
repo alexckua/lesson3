@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= "#{@body_class}".strip %>" >
 
     <%= render 'layouts/header.html.slim' %>
 
@@ -25,14 +25,6 @@
             </div>
           </div>
 
-      <% end %>
-      <% if current_user %>
-        <div class="searching">
-            <form action="/chat" data-remote="true" method="get">
-              <input id="search-messages" type="text" name="search" placeholder="type to search...">
-              <button></button>
-            </form>
-        </div>
       <% end %>
       <%= yield %>
     </div>

@@ -1,10 +1,17 @@
 h1 Our Chat
 .navigation-main
-  = paginate chat_messages, remote: true
-table#chat.table.table-striped.table-hover
-  tbody
-    = render chat_messages
+  /= paginate chat_messages, remote: true
 
-div.add-message
-  h3 Add message
-  = render 'messages/form', button: 'Send'
+.searching
+  form action="/chat" data-remote="true" method="get"
+    input#search-messages.form-control name="search" placeholder=("Type to search...") type="text"
+    button
+
+ol.chat
+  div.pane
+    = render chat_messages
+  p.pagination
+    = link_to_next_page(chat_messages, 'Next Page', :remote => true)
+
+= form_for message, remote: true do |f|
+  = f.text_field :text, placeholder: 'Type something here!', required: true, class: 'textarea'
