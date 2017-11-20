@@ -8,10 +8,11 @@ h1 Our Chat
     button
 
 ol.chat
+  p.pagination
+    = link_to_previous_page(chat_messages, 'Scroll Up to Load More', :remote => true)
   div.pane
     = render chat_messages
-  p.pagination
-    = link_to_next_page(chat_messages, 'Next Page', :remote => true)
+
 
 = form_for message, remote: true do |f|
   = f.text_field :text, placeholder: 'Type something here!', required: true, class: 'textarea'
