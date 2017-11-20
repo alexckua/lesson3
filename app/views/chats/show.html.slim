@@ -7,7 +7,7 @@ h1 Our Chat
     input#search-messages.form-control name="search" placeholder=("Type to search...") type="text"
     button
 
-ol.chat
+ol.chat data-user=current_user.id
   p.pagination
     = link_to_previous_page(chat_messages, 'Scroll Up to Load More', :remote => true)
   div.pane

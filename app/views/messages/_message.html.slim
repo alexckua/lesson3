@@ -13,7 +13,7 @@ li id="message_#{message.id}" class="#{ (message.user_id == current_user.id) ? '
       span_dislikes=> message.dislikes_count
       = link_to vote_message_path(message, vote: :dislike), method: :post, remote: true do
         i.glyphicon.glyphicon-thumbs-down
-  - if message.user_id == current_user.id
+  - if message.user_id == current_user.id && !local_assigns[:alien]
     div.user-buttons
       = button_to 'Destroy', message_path(message), method: :delete, class: 'delete-message-btn', data: {confirm: 'Are you sure?'}, remote: true
       br

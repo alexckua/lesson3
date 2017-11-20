@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: user_params[:email])
     @user ||= User.create(user_params)
     if @user.valid? && @user&.authenticate(user_params[:password])
-      session[:user_token] = @user.token
+      cookies.signed[:user] = @user.id
       redirect_to chat_path, notice: 'Cool! You\'re Logged in'
     else
       redirect_to root_path, notice: @user.errors.full_messages.to_sentence
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    cookies.delete :user
     redirect_to :root, notice: 'You\'re logged out'
   end
 

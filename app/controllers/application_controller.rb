@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    @current_user ||= User.find_by(token: session[:user_token])
+    @current_user ||= User.find_by(id: cookies.signed[:user])
   end
 
   def gravatar_user_image

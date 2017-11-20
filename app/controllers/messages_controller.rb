@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
   def create
     @message = current_user.messages.create(message_params)
+    render :create
+    ActionCable.server.broadcast 'chat', user_id: @message.user_id, id: @message.id, action: :create, res: render_to_string(partial: 'messages/message', object: @message, locals: { alien: true })
   end
 
   def vote
@@ -15,7 +17,8 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    message.destroy if is_my_message?(message)
+    current_user.messages.find(params[:id]).destroy
+    ActionCable.server.broadcast 'chat', id: params[:id], action: :delete
   end
 
   private
