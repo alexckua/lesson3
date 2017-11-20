@@ -1,0 +1,7 @@
+h3 Update Password
+
+= form_for :user, url: forgot_password_path, method: :patch do |f|
+  = f.hidden_field :token, :value => @token
+  = f.text_field :password, placeholder: 'New password', required: true, class: 'form-control'
+  br
+  button.btn.btn-primary Update Password

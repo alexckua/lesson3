@@ -1,0 +1,6 @@
+h3 Forgot Password
+
+= form_for :user, url: forgot_password_index_path do |f|
+  = f.email_field :email, placeholder: 'Your email', required: true, class: 'form-control'
+  br
+  button.btn.btn-primary Send

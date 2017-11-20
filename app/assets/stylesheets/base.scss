@@ -1,5 +1,12 @@
 // Basic app styles
 
+body {
+
+  &.chat-page {
+    background: #e8e8e8;
+  }
+}
+
 img {
   &.profile-image {
     position: relative;
@@ -12,13 +19,17 @@ img {
 }
 
 div{
-
   .no-messages {
-
     margin: 50px 0;
   }
 }
 
+
 .searching button {
   display: none;
+}
+
+.delete-message-btn, .edit-message-btn {
+  border: 0;
+  color: #01698c;
 }

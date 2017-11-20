@@ -1,10 +1,18 @@
 h1 Our Chat
 .navigation-main
-  = paginate chat_messages, remote: true
-table#chat.table.table-striped.table-hover
-  tbody
+  /= paginate chat_messages, remote: true
+
+.searching
+  form action="/chat" data-remote="true" method="get"
+    input#search-messages.form-control name="search" placeholder=("Type to search...") type="text"
+    button
+
+ol.chat
+  p.pagination
+    = link_to_previous_page(chat_messages, 'Scroll Up to Load More', :remote => true)
+  div.pane
     = render chat_messages
 
-div.add-message
-  h3 Add message
-  = render 'messages/form', button: 'Send'
+
+= form_for message, remote: true do |f|
+  = f.text_field :text, placeholder: 'Type something here!', required: true, class: 'textarea'
