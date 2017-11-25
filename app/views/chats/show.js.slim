@@ -7,4 +7,4 @@
 - if chat_messages.first_page?
   | $('.pagination').html("That's all, folks!");
 - else
-  | $('.pagination').html("#{ j(link_to_previous_page(chat_messages, 'Scroll Up to Load More!', :remote => true)) }");
+  | $('.pagination').html("#{ j(link_to_previous_page(chat_messages, 'Load More Old Messages', :remote => true)) }");

@@ -6,5 +6,6 @@ module ApplicationCable
       self.current_user = User.find_by(id: cookies.signed[:user])
       reject_unauthorized_connection unless current_user
     end
+
   end
 end

@@ -23,17 +23,6 @@ $(document).on('keyup', '#search-messages', function() {
 });
 
 
-$(document).scroll(function() {
-    if ( $(document).scrollTop() == 0 ) {
-
-        if ( $("[rel='prev']").length > 0 ) {
-
-            $("[rel='prev']")[0].click();
-        }
-    }
-})
-
-
 function scrollToBottom() {
     $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 }

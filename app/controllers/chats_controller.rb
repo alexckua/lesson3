@@ -4,6 +4,7 @@ class ChatsController < ApplicationController
 
   def show
     @searching = ( params[:search] ) ? true : false
+    @online_users = User.where("id != ?", current_user.id).where(online: true)
   end
 
   private

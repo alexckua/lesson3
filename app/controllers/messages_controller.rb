@@ -7,10 +7,8 @@ class MessagesController < ApplicationController
 
   def vote
     message.vote(params[:vote], current_user)
+    render :vote
     ActionCable.server.broadcast 'chat', user_id: @message.user_id, id: @message.id, action: :vote, res: render_to_string(template: 'messages/vote', object: @message)
-  end
-
-  def edit
   end
 
   def update

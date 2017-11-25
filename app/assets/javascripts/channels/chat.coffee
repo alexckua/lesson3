@@ -13,6 +13,8 @@ Chat = {
   delete: (data) ->
     $("#message_#{data['id']}").slideUp()
   vote: (data) ->
+    eval(data['res'])
+  user_online: (data) ->
     return if data['user_id'] == $('[data-user]').data('user')
     eval(data['res'])
 }

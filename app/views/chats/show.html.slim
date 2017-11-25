@@ -1,18 +1,24 @@
-h1 Our Chat
-.navigation-main
-  /= paginate chat_messages, remote: true
+div.chat-pane
+  h1 Our Chat
+  .navigation-main
+    /= paginate chat_messages, remote: true
 
-.searching
-  form action="/chat" data-remote="true" method="get"
-    input#search-messages.form-control name="search" placeholder=("Type to search...") type="text"
-    button
+  .searching
+    form action="/chat" data-remote="true" method="get"
+      input#search-messages.form-control name="search" placeholder=("Type to search...") type="text"
+      button
 
-ol.chat data-user=current_user.id
-  p.pagination
-    = link_to_previous_page(chat_messages, 'Scroll Up to Load More', :remote => true)
-  div.pane
-    = render chat_messages
+  ol.chat data-user=current_user.id
+    p.pagination
+      = link_to_previous_page(chat_messages, 'Load More Old Messages', :remote => true)
+    div.pane
+      = render chat_messages
 
 
-= form_for message, remote: true do |f|
-  = f.text_field :text, placeholder: 'Type something here!', required: true, class: 'textarea'
+  = form_for message, remote: true do |f|
+    = f.text_field :text, placeholder: 'Type something here!', required: true, class: 'textarea'
+div.right-sidebar
+  div.text-center
+    h3 Online Users
+    ul#online-users
+      = render partial: 'messages/users_online', collection: @online_users, as: :user
