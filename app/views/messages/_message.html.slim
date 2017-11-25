@@ -1,4 +1,4 @@
-li id="message_#{message.id}" class="#{ local_assigns[:alien] ? 'other' : 'self' }"
+li id="message_#{message.id}" class="#{ is_my_message?(message, local_assigns[:alien]) ? 'self' : 'other' }"
   .avatar
     = image_tag message.user.gravatar_url, size: "80x80"
     span.author => message.user_name

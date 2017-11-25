@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
     current_user ? Gravatar.new( current_user.email ).image_url : false
   end
 
-  def is_my_message?(message)
-    current_user&.id === message.user&.id
+  def is_my_message?(message, alien)
+    return false if alien
+    return (message.user_id == current_user.id)
   end
 
   helper_method :is_my_message?
