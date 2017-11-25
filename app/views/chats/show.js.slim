@@ -1,0 +1,10 @@
+- if @searching
+  | $('.chat .pane').html('#{ j(render chat_messages) }');
+- else
+  | $('#{j(render chat_messages)}').hide().prependTo('.chat .pane').slideDown('slow');
+
+// Update pagination link
+- if chat_messages.first_page?
+  | $('.pagination').html("That's all, folks!");
+- else
+  | $('.pagination').html("#{ j(link_to_previous_page(chat_messages, 'Scroll Up to Load More!', :remote => true)) }");

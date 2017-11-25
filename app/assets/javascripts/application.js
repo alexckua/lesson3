@@ -32,3 +32,8 @@ $(document).scroll(function() {
         }
     }
 })
+
+
+function scrollToBottom() {
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+}

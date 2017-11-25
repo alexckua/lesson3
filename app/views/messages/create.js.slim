@@ -1,3 +1,4 @@
 |
   $('#message_text').val('');
   $('.chat').append("#{j(render partial: 'message', object: @message)}");
+  scrollToBottom();
