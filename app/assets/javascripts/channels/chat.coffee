@@ -12,4 +12,7 @@ Chat = {
     $('.chat').append(data['res'])
   delete: (data) ->
     $("#message_#{data['id']}").slideUp()
+  vote: (data) ->
+    return if data['user_id'] == $('[data-user]').data('user')
+    eval(data['res'])
 }
