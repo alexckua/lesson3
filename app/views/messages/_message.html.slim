@@ -1,4 +1,4 @@
-li id="message_#{message.id}" class="#{ (message.user_id == current_user.id) ? 'self' : 'other' }"
+li id="message_#{message.id}" class="#{ is_my_message?(message, local_assigns[:alien]) ? 'self' : 'other' }"
   .avatar
     = image_tag message.user.gravatar_url, size: "80x80"
     span.author => message.user_name
@@ -18,3 +18,6 @@ li id="message_#{message.id}" class="#{ (message.user_id == current_user.id) ? '
       = button_to 'Destroy', message_path(message), method: :delete, class: 'delete-message-btn', data: {confirm: 'Are you sure?'}, remote: true
       br
       = button_to 'Edit', edit_message_path(message), remote: true, method: :get, class: 'edit-message-btn'
+  - if local_assigns[:scroll_down]
+    javascript:
+      scrollToBottom();

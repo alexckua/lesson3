@@ -2,14 +2,13 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.create(message_params)
     render :create
-    ActionCable.server.broadcast 'chat', user_id: @message.user_id, id: @message.id, action: :create, res: render_to_string(partial: 'messages/message', object: @message, locals: { alien: true })
+    ActionCable.server.broadcast 'chat', user_id: @message.user_id, id: @message.id, action: :create, res: render_to_string(partial: 'messages/message', object: @message, locals: { alien: true, scroll_down: true })
   end
 
   def vote
     message.vote(params[:vote], current_user)
-  end
-
-  def edit
+    render :vote
+    ActionCable.server.broadcast 'chat', user_id: @message.user_id, id: @message.id, action: :vote, res: render_to_string(template: 'messages/vote', object: @message)
   end
 
   def update

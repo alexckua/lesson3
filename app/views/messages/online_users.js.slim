@@ -1,0 +1,7 @@
+- if local_assigns[:online]
+    | if ($('#online-users > li[data-user-id="#{local_assigns[:@user].id}"]').length == 0) {
+    |   $('#online-users').append('<li data-user-id="#{local_assigns[:@user].id}" >#{local_assigns[:@user].name}</li>');
+    | }
+    |
+- else
+  | $('#online-users > li[data-user-id="#{local_assigns[:@user].id}"]').remove();
