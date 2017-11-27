@@ -1,5 +1,6 @@
-- Fix scroll
-- Implement update and vote(like/dislike) through web sockets
-- Fix message class to right alignment to left/right
-- Fix search
-- Add section on the left side with all online users
+- Remove live search from chat page
+- Search form should navigate to new search page and there should be live search
+- Message update through sockets
+- Style message action button
+- Style edit message
+- Move all broadcasts to background process

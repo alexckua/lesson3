@@ -7,12 +7,10 @@ class Message < ApplicationRecord
   has_many :dislikes, -> { dislike }, class_name: 'Vote'
   validates :text, presence: true
 
-  scope :chat, -> (q, page) { search(q).includes(:user).order(created_at: :asc).page(page) }
+  scope :chat, -> (q, page) { search(q).includes(:user).order(id: :desc).page(page) }
   scope :search, -> (q) { where("text ILIKE ?", "%#{q}%") }
 
-  def user_name
-    user&.name
-  end
+  delegate :name, to: :user, prefix: true
 
   def vote(action, user)
     vote = votes.where(user: user).first_or_initialize

@@ -10,9 +10,9 @@ div.chat-pane
 
   ol.chat data-user=current_user.id
     p.pagination
-      = link_to_previous_page(chat_messages, 'Load More Old Messages', :remote => true)
+      = link_to_next_page(chat_messages, 'Load More Old Messages', :remote => true)
     div.pane
-      = render chat_messages
+      = render chat_messages.reverse
 
 
   = form_for message, remote: true do |f|

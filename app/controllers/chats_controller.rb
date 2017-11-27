@@ -15,8 +15,7 @@ class ChatsController < ApplicationController
   helper_method :message
 
   def chat_messages
-    page = params[:page] ? params[:page] : Message.chat(params[:search], params[:page]).per(10).total_pages
-    Message.chat(params[:search], page).per(10)
+    Message.chat(params[:search], params[:page]).per(10)
   end
   helper_method :chat_messages
 

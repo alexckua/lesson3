@@ -10,6 +10,7 @@ Chat = {
   create: (data) ->
     return if data['user_id'] == $('[data-user]').data('user')
     $('.chat').append(data['res'])
+    scrollToBottom()
   delete: (data) ->
     $("#message_#{data['id']}").slideUp()
   vote: (data) ->

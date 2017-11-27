@@ -1,10 +1,10 @@
 - if @searching
-  | $('.chat .pane').html('#{ j(render chat_messages) }');
+  | $('.chat .pane').html('#{ j(render chat_messages.reverse) }');
 - else
-  | $('#{j(render chat_messages)}').hide().prependTo('.chat .pane').slideDown('slow');
+  | $('#{j(render chat_messages.reverse)}').hide().prependTo('.chat .pane').slideDown('slow');
 
 // Update pagination link
-- if chat_messages.first_page?
+- if chat_messages.last_page?
   | $('.pagination').html("That's all, folks!");
 - else
-  | $('.pagination').html("#{ j(link_to_previous_page(chat_messages, 'Load More Old Messages', :remote => true)) }");
+  | $('.pagination').html("#{ j(link_to_next_page(chat_messages, 'Load More Old Messages', :remote => true)) }");
