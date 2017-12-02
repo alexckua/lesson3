@@ -11,10 +11,15 @@ Chat = {
     return if data['user_id'] == $('[data-user]').data('user')
     $('.chat').append(data['res'])
     scrollToBottom()
+  update: (data) ->
+    return if data['user_id'] == $('[data-user]').data('user')
+    $("#message_" + data['id']).replaceWith(data['res'])
   delete: (data) ->
     $("#message_#{data['id']}").slideUp()
   vote: (data) ->
-    eval(data['res'])
+    return if data['user_id'] == $('[data-user]').data('user')
+    $("#message_" + data['id'] + " span_likes").text(data['res']['likes_count'])
+    $("#message_" + data['id'] + " span_dislikes").text(data['res']['dislikes_count'])
   user_online: (data) ->
     return if data['user_id'] == $('[data-user]').data('user')
     eval(data['res'])
