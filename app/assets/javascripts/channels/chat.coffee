@@ -22,5 +22,9 @@ Chat = {
     $("#message_" + data['id'] + " span_dislikes").text(data['res']['dislikes_count'])
   user_online: (data) ->
     return if data['user_id'] == $('[data-user]').data('user')
-    eval(data['res'])
+    if ( data['online'] )
+      if ($('#online-users > li[data-user-id="'+data['user_id']+'"]').length == 0)
+        $('#online-users').append(data['message_html']);
+    else
+      $('#online-users > li[data-user-id="'+data['user_id']+'"]').remove();
 }
