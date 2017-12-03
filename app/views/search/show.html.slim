@@ -1,5 +1,7 @@
-h1 You're searching for "#{search_query}"
-
+h1
+  | You're searching for "
+  span.search-query #{search_query}
+  | "
 form action="/search" data-remote="true" method="get"
   input#search-messages.form-control name="q" value="#{search_query}" placeholder=("Type to search...") type="text"
 
