@@ -19,9 +19,10 @@
 //= require bootstrap-sprockets
 
 $(document).on('keyup', '#search-messages', function() {
-  Rails.fire(this.form, 'submit');
+    if ( $(this).val().length > 0 ) {
+        Rails.fire(this.form, 'submit');
+    }
 });
-
 
 function scrollToBottom() {
     $("html, body").animate({ scrollTop: $(document).height() }, 1000);
