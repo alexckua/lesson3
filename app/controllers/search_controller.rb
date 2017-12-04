@@ -7,7 +7,7 @@ class SearchController < ApplicationController
   private
 
   def chat_messages
-    Message.search(params[:q])
+    @messages ||= Message.search(params[:q]).includes(:user)
   end
   helper_method :chat_messages
 
