@@ -4,9 +4,8 @@ div.chat-pane
     /= paginate chat_messages, remote: true
 
   .searching
-    form action="/chat" data-remote="true" method="get"
-      input#search-messages.form-control name="search" placeholder=("Type to search...") type="text"
-      button
+    = form_tag search_message_path, method: :get
+      = text_field_tag :q, '', placeholder: 'Type to search...', required: true, class: 'form-control'
 
   ol.chat data-user=current_user.id
     p.pagination

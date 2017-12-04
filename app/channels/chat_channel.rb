@@ -10,10 +10,10 @@ class ChatChannel < ApplicationCable::Channel
 
   private
 
-  def set_user_status(online)
+  def set_user_status(online_status)
     if current_user
-      current_user.update_attribute(:online, online)
-      ActionCable.server.broadcast 'chat', { user_id: current_user.id, action: :user_online, res: ApplicationController.new.render_to_string(template: 'messages/online_users', locals: { online: online, :@user => current_user }) }
+      current_user.update_attribute(:online, online_status)
+      ActionCable.server.broadcast 'chat', user_id: current_user.id, action: :user_online, online: online_status, message_html: ApplicationController.renderer.render(partial: 'messages/users_online', object: current_user, as: :user)
     end
   end
 

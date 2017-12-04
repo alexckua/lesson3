@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
+  get 'search', :to => 'search#show', :as => 'search_message'
   resource :chat, only: :show
   post 'chat' => 'chats#show'
   resource :welcome, only: :index

@@ -7,7 +7,8 @@ class Message < ApplicationRecord
   has_many :dislikes, -> { dislike }, class_name: 'Vote'
   validates :text, presence: true
 
-  scope :chat, -> (q, page) { search(q).includes(:user).order(id: :desc).page(page) }
+  # scope :chat, -> (q, page) { search(q).includes(:user).order(id: :desc).page(page) }
+  scope :chat, -> (page) { includes(:user).order(id: :desc).page(page) }
   scope :search, -> (q) { where("text ILIKE ?", "%#{q}%") }
 
   delegate :name, to: :user, prefix: true

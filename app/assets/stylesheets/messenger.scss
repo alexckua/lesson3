@@ -244,3 +244,14 @@ ul#online-users {
 .chat-pane {
   width: calc(100% - 200px);
 }
+
+.delete-msg-button, .edit-msg-button {
+  border: 0;
+  background: transparent;
+
+  &:hover {
+    > i {
+      color: #447cc5;
+    }
+  }
+}

@@ -3,7 +3,6 @@ class ChatsController < ApplicationController
   before_action lambda { @body_class = 'chat-page' }
 
   def show
-    @searching = ( params[:search] ) ? true : false
     @online_users = User.where("id != ?", current_user.id).where(online: true)
   end
 
@@ -15,7 +14,7 @@ class ChatsController < ApplicationController
   helper_method :message
 
   def chat_messages
-    Message.chat(params[:search], params[:page]).per(10)
+    Message.chat(params[:page]).per(10)
   end
   helper_method :chat_messages
 
