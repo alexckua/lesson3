@@ -9,25 +9,26 @@ nav.navbar.navbar-inverse
       a.navbar-brand href="#{chat_path}" #{Rails.application.class.parent_name}
     #main-nav-collapse.collapse.navbar-collapse
       ul.nav.navbar-nav.mr-auto
-        li.active
+        li
           a href="#{chat_path}"
             | Home
             span.sr-only (current)
-      .col-sm-3.col-md-3
-        - if controller.controller_name == 'search'
-          = form_tag search_message_path, method: :get, :class => 'navbar-form', :role => 'search', :remote => true
-          .input-group
-            = text_field_tag :q, search_query, placeholder: 'Search', required: true, class: 'form-control', :id => 'search-messages'
-            .input-group-btn
-              button.btn.btn-default.btn-search type="submit"
-                i.glyphicon.glyphicon-search
-        - else
-          = form_tag search_message_path, method: :get, :class => 'navbar-form', :role => 'search'
-          .input-group
-            = text_field_tag :q, '', placeholder: 'Search', required: true, class: 'form-control'
-            .input-group-btn
-              button.btn.btn-default.btn-search type="submit"
-                i.glyphicon.glyphicon-search
+      - if current_user
+        .col-sm-3.col-md-3
+          - if controller.controller_name == 'search'
+            = form_tag search_message_path, method: :get, :class => 'navbar-form', :role => 'search', :remote => true
+              .input-group
+                = text_field_tag :q, search_query, placeholder: 'Search', required: true, class: 'form-control', :id => 'search-messages'
+                .input-group-btn
+                  button.btn.btn-default.btn-search type="submit"
+                    i.glyphicon.glyphicon-search
+          - else
+            = form_tag search_message_path, method: :get, :class => 'navbar-form', :role => 'search'
+              .input-group
+                = text_field_tag :q, '', placeholder: 'Search', required: true, class: 'form-control'
+                .input-group-btn
+                  button.btn.btn-default.btn-search type="submit"
+                    i.glyphicon.glyphicon-search
       ul.nav.navbar-nav.navbar-right
         - if current_user
           li.dropdown

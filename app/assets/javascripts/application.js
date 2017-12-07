@@ -27,3 +27,13 @@ $(document).on('keyup', '#search-messages', function() {
 function scrollToBottom() {
     $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 }
+
+$(window).scroll(function() {
+
+    if ($(document).scrollTop() > 50) {
+        $('.right-sidebar').addClass('scrolled');
+    }
+    else {
+        $('.right-sidebar').removeClass('scrolled');
+    }
+});

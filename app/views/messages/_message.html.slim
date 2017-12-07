@@ -5,7 +5,8 @@ li id="message_#{message.id}" class="#{ is_my_message?(message, local_assigns[:a
   .msg
     p => message.text
     time #{message.created_at.to_formatted_s(:short)}
-    br
+    div.clearfix
+    div.likes
       span_likes=> message.likes_count
       = link_to vote_message_path(message, vote: :like), method: :post, remote: true do
         i.glyphicon.glyphicon-thumbs-up
