@@ -219,6 +219,10 @@ div.right-sidebar{
   overflow-y: auto;
 }
 
+.btn-search {
+  padding: 4px 10px !important;
+}
+
 ul#online-users {
   list-style: none;
   padding: 0;
@@ -228,6 +232,11 @@ ul#online-users {
   > li {
     position: relative;
 
+    > img {
+      margin-right: 5px;
+      border-radius: 100%;
+    }
+
     &:after {
       content: '';
       width: 7px;
@@ -235,8 +244,8 @@ ul#online-users {
       background: #099a09;
       position: absolute;
       left: -16px;
-      top: 7px;
-      border-radius: 15px;
+      top: 12px;
+      border-radius: 100%;
     }
   }
 

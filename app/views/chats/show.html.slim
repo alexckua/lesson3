@@ -1,11 +1,6 @@
 div.chat-pane
-  h1 Our Chat
   .navigation-main
     /= paginate chat_messages, remote: true
-
-  .searching
-    = form_tag search_message_path, method: :get
-      = text_field_tag :q, '', placeholder: 'Type to search...', required: true, class: 'form-control'
 
   ol.chat data-user=current_user.id
     p.pagination
