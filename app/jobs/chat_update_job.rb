@@ -22,4 +22,12 @@ class ChatUpdateJob < ApplicationJob
   def destroy(message_id)
     ActionCable.server.broadcast 'chat', id: message_id, action: :delete
   end
+
+  def set_user_status(user, online_status)
+    elapsed_seconds = Time.now - user.last_online
+    if elapsed_seconds > 5
+      ActionCable.server.broadcast 'chat', user_id: user.id, action: :user_online, online: online_status, message_html: ApplicationController.renderer.render(partial: 'messages/users_online', object: user, as: :user)
+    end
+  end
+
 end

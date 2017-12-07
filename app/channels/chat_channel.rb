@@ -13,7 +13,8 @@ class ChatChannel < ApplicationCable::Channel
   def set_user_status(online_status)
     if current_user
       current_user.update_attribute(:online, online_status)
-      ActionCable.server.broadcast 'chat', user_id: current_user.id, action: :user_online, online: online_status, message_html: ApplicationController.renderer.render(partial: 'messages/users_online', object: current_user, as: :user)
+      current_user.update_attribute(:last_online, Time.now)
+      ChatUpdateJob.set(wait: 5.seconds).perform_later('set_user_status', [current_user, online_status])
     end
   end
 
