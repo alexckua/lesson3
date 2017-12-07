@@ -28,6 +28,14 @@ function scrollToBottom() {
     $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 }
 
+function atTheBottom() {
+
+    if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        return true;
+    }
+    return false;
+}
+
 $(window).scroll(function() {
 
     if ($(document).scrollTop() > 50) {

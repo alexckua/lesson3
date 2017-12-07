@@ -9,8 +9,10 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 Chat = {
   create: (data) ->
     return if data['user_id'] == $('[data-user]').data('user')
+    bottom = atTheBottom()
     $('.chat').append(data['res'])
-    scrollToBottom()
+    if ( bottom )
+      scrollToBottom()
   update: (data) ->
     return if data['user_id'] == $('[data-user]').data('user')
     $("#message_" + data['id']).replaceWith(data['res'])
