@@ -9,7 +9,7 @@ div.chat-pane
       = render chat_messages.reverse
     div.answer
       = form_for message, remote: true do |f|
-        = f.text_field :text, placeholder: 'Type something here!', required: true, class: 'textarea'
+        = f.text_field :text, placeholder: 'Type something here!', required: true, class: 'textarea', autocomplete: 'off'
         = button_tag '', :type => 'submit', :class => 'send_message'
           | Send&nbsp;
           i.glyphicon.glyphicon-send
