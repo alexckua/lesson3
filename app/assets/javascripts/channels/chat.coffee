@@ -8,6 +8,7 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
 Chat = {
   create: (data) ->
+    return if $('body.search-page').length
     return if data['user_id'] == $('[data-user]').data('user')
     bottom = atTheBottom()
     $('.chat').append(data['res'])
