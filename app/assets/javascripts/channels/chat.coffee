@@ -12,6 +12,16 @@ Chat = {
     return if data['user_id'] == $('[data-user]').data('user')
     bottom = atTheBottom()
     $('.chat').append(data['res'])
+
+    if document.hidden
+      Push.create 'New Message',
+      body: data['message_text']
+      icon: data['user_image']
+      onClick: ->
+        window.focus()
+        @close()
+        return
+
     if ( bottom )
       scrollToBottom()
   update: (data) ->

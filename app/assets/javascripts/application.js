@@ -17,6 +17,7 @@
 //= require_tree .
 //
 //= require bootstrap-sprockets
+//= require push.js/bin/push
 
 $(document).on('keyup', '#search-messages', function() {
     if ( $(this).val().length > 0 ) {
@@ -45,3 +46,8 @@ $(window).scroll(function() {
         $('.right-sidebar').removeClass('scrolled');
     }
 });
+
+if ( Push.Permission.has() === false ) {
+
+    Push.create('');
+}

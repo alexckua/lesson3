@@ -8,7 +8,7 @@ class ChatUpdateJob < ApplicationJob
   private
 
   def create(message)
-    ActionCable.server.broadcast 'chat', user_id: message.user_id, id: message.id, action: :create, res: ApplicationController.renderer.render(partial: 'messages/message', object: message, locals: { alien: true })
+    ActionCable.server.broadcast 'chat', user_id: message.user_id, id: message.id, message_text: message.text, user_image: message.user.gravatar_url, action: :create, res: ApplicationController.renderer.render(partial: 'messages/message', object: message, locals: { alien: true })
   end
 
   def update(message)
