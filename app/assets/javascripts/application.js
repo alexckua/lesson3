@@ -17,6 +17,7 @@
 //= require_tree .
 //
 //= require bootstrap-sprockets
+//= require push.js/bin/push
 
 $(document).on('keyup', '#search-messages', function() {
     if ( $(this).val().length > 0 ) {
@@ -26,4 +27,27 @@ $(document).on('keyup', '#search-messages', function() {
 
 function scrollToBottom() {
     $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+}
+
+function atTheBottom() {
+
+    if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        return true;
+    }
+    return false;
+}
+
+$(window).scroll(function() {
+
+    if ($(document).scrollTop() > 50) {
+        $('.right-sidebar').addClass('scrolled');
+    }
+    else {
+        $('.right-sidebar').removeClass('scrolled');
+    }
+});
+
+if ( Push.Permission.has() === false ) {
+
+    Push.create('');
 }

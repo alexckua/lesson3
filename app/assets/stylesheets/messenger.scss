@@ -1,9 +1,10 @@
+$break-xs: 991px;
+
 .chat {
   list-style: none;
   background: none;
   margin: 0;
   padding: 0 0 50px 0;
-  margin-top: 60px;
   margin-bottom: 10px;
 }
 .chat li {
@@ -118,6 +119,10 @@
   padding: 10px;
   border-radius: 2px;
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+
+  @media screen and (max-width: $break-xs) {
+    min-width: auto;
+  }
 }
 
 .msg p {
@@ -182,9 +187,10 @@ input.textarea {
   border: none;
   outline: none;
   padding-left: 15px;
-  padding-right: 55px;
+  padding-right: 80px;
   color: #666;
   font-weight: 400;
+
 }
 .emojis {
   position: fixed;
@@ -203,6 +209,18 @@ input.textarea {
   opacity: 0.9;
 }
 
+.send_message {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  height: 50px;
+  z-index: 99;
+  background: #ccc;
+  border-radius: 0;
+  padding: 0 9px;
+  outline: none;
+}
+
 
 // Right sidebar
 
@@ -212,10 +230,46 @@ div.right-sidebar{
   top:0;
   right:0;
   width: 200px;
-  height:100%;
+  height: calc(100% - 50px);
   background: #dedede;
   position:fixed;
   padding-top: 50px;
+  overflow-y: auto;
+
+  &.scrolled {
+    padding-top: 0;
+  }
+
+
+  /* Let's get this party started */
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    //-webkit-border-radius: 10px;
+    //border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    //-webkit-border-radius: 10px;
+    //border-radius: 10px;
+    background: #01769c;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  }
+
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4);
+  }
+
+
+}
+
+.btn-search {
+  padding: 4px 10px !important;
 }
 
 ul#online-users {
@@ -226,6 +280,12 @@ ul#online-users {
 
   > li {
     position: relative;
+    padding-bottom: 5px;
+
+    > img {
+      margin-right: 5px;
+      border-radius: 100%;
+    }
 
     &:after {
       content: '';
@@ -234,8 +294,8 @@ ul#online-users {
       background: #099a09;
       position: absolute;
       left: -16px;
-      top: 7px;
-      border-radius: 15px;
+      top: 12px;
+      border-radius: 100%;
     }
   }
 
@@ -243,6 +303,10 @@ ul#online-users {
 
 .chat-pane {
   width: calc(100% - 200px);
+
+  @media screen and (max-width: $break-xs) {
+    width: 100%;
+  }
 }
 
 .delete-msg-button, .edit-msg-button {
@@ -252,6 +316,18 @@ ul#online-users {
   &:hover {
     > i {
       color: #447cc5;
+    }
+  }
+}
+
+.likes {
+  padding-top: 10px;
+}
+
+@media screen and (max-width: $break-xs) {
+  .nav {
+    li {
+      text-align: center;
     }
   }
 }

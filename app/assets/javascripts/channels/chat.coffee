@@ -8,9 +8,22 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
 Chat = {
   create: (data) ->
+    return if $('body.search-page').length
     return if data['user_id'] == $('[data-user]').data('user')
+    bottom = atTheBottom()
     $('.chat').append(data['res'])
-    scrollToBottom()
+
+    if document.hidden
+      Push.create 'New Message',
+      body: data['message_text']
+      icon: data['user_image']
+      onClick: ->
+        window.focus()
+        @close()
+        return
+
+    if ( bottom )
+      scrollToBottom()
   update: (data) ->
     return if data['user_id'] == $('[data-user]').data('user')
     $("#message_" + data['id']).replaceWith(data['res'])

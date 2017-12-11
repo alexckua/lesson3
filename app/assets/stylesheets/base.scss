@@ -2,7 +2,7 @@
 
 body {
 
-  &.chat-page {
+  &.chat-page, &.search-page {
     background: #e8e8e8;
   }
 }
