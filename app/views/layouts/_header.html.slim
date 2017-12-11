@@ -23,7 +23,7 @@ nav.navbar.navbar-inverse
                   button.btn.btn-default.btn-search type="submit"
                     i.glyphicon.glyphicon-search
           - else
-            = form_tag search_message_path, method: :get, :class => 'navbar-form', :role => 'search'
+            = form_tag search_message_path, method: :get, :class => 'navbar-form', :role => 'search', id: :search_form
               .input-group
                 = text_field_tag :q, '', placeholder: 'Search', required: true, class: 'form-control'
                 .input-group-btn
