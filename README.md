@@ -1,7 +1,3 @@
-- Improve mobile expirience
-- Fix search websockets
-- Fix autoscroll. Scroll only if user at the bottom and it is his message.
-- Improve users sidebar
-- Add Web notification chakaboom is not focused
-- Fix edit form
-- Fix online/offline
+- Make 100% coverage(unly unit and integrations tests) features/models
+- Make pending test success
+- Add javascript driver (phantomjs/webkit/chrome-headless)
