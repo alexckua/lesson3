@@ -6,13 +6,27 @@ RSpec.describe Message, type: :model do
   let!(:message) { Message.create(text: 'text', user: hron) }
 
   describe '#vote' do
-    it 'likes' do
-      expect { message.vote('like', hron) }.to change { message.likes_count }.from(0).to(1)
+    context 'likes' do
+      it { expect { message.vote('like', hron) }.to change { message.likes_count }.from(0).to(1) }
     end
 
-    it 'unlikes' do
-      message.vote('like', hron)
-      expect { message.vote('like', hron) }.to change { message.likes_count }.from(1).to(0)
+    context 'unlikes' do
+      let!(:vote) { message.vote('like', hron) }
+      it { expect { message.vote('like', hron) }.to change { message.likes_count }.from(1).to(0) }
+    end
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:likes) }
+    it { is_expected.to have_many(:dislikes) }
+    it { is_expected.to have_many(:votes) }
+  end
+
+  describe 'validations' do
+    context 'valid params' do
+      subject { Message.create(text: 'text', user: hron) }
+      it { is_expected.to validate_presence_of(:text) }
     end
   end
 end

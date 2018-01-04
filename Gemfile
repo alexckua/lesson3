@@ -55,6 +55,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'capybara-webkit', '1.14'
+  gem 'shoulda-matchers'
 end
 
 group :development do
