@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171207115101) do
     t.datetime "updated_at", null: false
     t.string "token"
     t.string "password_digest"
-    t.datetime "last_online", default: "2018-01-03 08:49:42"
+    t.datetime "last_online", default: "2018-01-04 17:39:49"
   end
 
   create_table "votes", force: :cascade do |t|

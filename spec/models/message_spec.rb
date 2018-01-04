@@ -20,13 +20,15 @@ RSpec.describe Message, type: :model do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:likes) }
     it { is_expected.to have_many(:dislikes) }
-    it { is_expected.to have_many(:votes) }
+    it { is_expected.to have_many(:votes).dependent(:delete_all) }
   end
 
   describe 'validations' do
-    context 'valid params' do
-      subject { Message.create(text: 'text', user: hron) }
-      it { is_expected.to validate_presence_of(:text) }
-    end
+    subject { Message.create(text: 'text', user: hron) }
+    it { is_expected.to validate_presence_of(:text) }
+  end
+
+  describe 'delegations' do
+    it { should delegate_method(:name).to(:user).with_prefix(true) }
   end
 end
