@@ -56,6 +56,8 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'capybara-webkit', '1.14'
   gem 'shoulda'
+  gem 'factory_bot_rails'
+  gem 'pry'
 end
 
 group :development do

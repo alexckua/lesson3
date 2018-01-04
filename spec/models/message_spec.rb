@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Message, type: :model do
 
-  let(:hron) { User.create(email: 'hron@gmail.com', password: 'password', name: 'Hron') }
-  let!(:message) { Message.create(text: 'text', user: hron) }
+  let(:hron){ create(:user) }
+  let!(:message) { create(:message) }
+
 
   describe '#vote' do
     context 'likes' do
@@ -24,7 +25,6 @@ RSpec.describe Message, type: :model do
   end
 
   describe 'validations' do
-    subject { Message.create(text: 'text', user: hron) }
     it { is_expected.to validate_presence_of(:text) }
   end
 
