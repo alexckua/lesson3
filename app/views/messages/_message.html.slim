@@ -17,9 +17,9 @@ li id="message_#{message.id}" class="#{ is_my_message?(message, local_assigns[:a
   - if is_my_message?(message, local_assigns[:alien])
     div.user-buttons
       = form_tag message_path(message), method: :delete, remote: true
-        = button_tag :class => 'delete-msg-button', :data => { :confirm => 'Really want to delete this message?' }
+        = button_tag :class => 'delete-msg-button', :data => { :confirm => 'Really want to delete this message?' }, id: 'delete'
           i.glyphicon.glyphicon-trash
       br
       = form_tag edit_message_path(message), method: :get, remote: true
-        = button_tag :class => 'edit-msg-button'
+        = button_tag :class => 'edit-msg-button', id: 'edit'
           i.glyphicon.glyphicon-pencil
