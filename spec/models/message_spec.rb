@@ -15,6 +15,15 @@ RSpec.describe Message, type: :model do
       let!(:vote) { message.vote('like', hron) }
       it { expect { message.vote('like', hron) }.to change { message.likes_count }.from(1).to(0) }
     end
+
+    context 'dislikes' do
+      it { expect { message.vote('dislike', hron) }.to change { message.dislikes_count }.from(0).to(1) }
+    end
+
+    context 'undislikes' do
+      let!(:vote) { message.vote('dislike', hron) }
+      it { expect { message.vote('dislike', hron) }.to change { message.dislikes_count }.from(1).to(0) }
+    end
   end
 
   describe 'associations' do
