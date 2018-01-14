@@ -37,7 +37,7 @@ RSpec.feature 'Sign Up', type: :feature do
     expect(page).to have_content('Cool')
   end
 
-  pending 'updates user\'s name on login' do
+  it 'updates user\'s name on login' do
     within '#new_session' do
       fill_in 'Email', with: hron.email
       fill_in 'Name', with: 'Ya ne Hron'
