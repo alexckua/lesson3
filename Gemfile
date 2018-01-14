@@ -58,6 +58,8 @@ group :development, :test do
   gem 'shoulda'
   gem 'factory_bot_rails'
   gem 'pry'
+  gem 'pry-nav'
+  gem 'database_cleaner'
 end
 
 group :development do
