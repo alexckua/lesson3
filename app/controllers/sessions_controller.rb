@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: user_params[:email])
     @user ||= User.create(user_params)
     if @user.valid? && @user&.authenticate(user_params[:password])
+       @user.update(name: user_params[:name]) if user_params[:name].present?
       cookies.signed[:user] = @user.id
       redirect_to chat_path, notice: 'Cool! You\'re Logged in'
     else

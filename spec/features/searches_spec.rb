@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Searches", type: :feature do
 
-  let(:user) { User.create(email: 'hron@mail.com', password: '1', name: 'Hron') }
-  let!(:message) { Message.create(user: user, text: 'testing') }
+  let(:user) { create(:user) }
+  let!(:message) { create(:message, text: 'test') }
 
   before do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
