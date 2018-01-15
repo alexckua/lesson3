@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Sign Up', type: :feature do
 
-  let(:hron) { User.create(email: 'hron@gmail.com', password: 'password', name: 'Hron') }
+  let(:hron) { create(:hron) }
 
   before do
     visit root_path
