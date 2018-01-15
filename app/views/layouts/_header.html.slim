@@ -43,4 +43,5 @@ nav.navbar.navbar-inverse
         - else
           li
             = link_to 'Log in', root_path
-
+        li= link_to 'EN', locale_path(:en), method: :patch
+        li= link_to 'UA', locale_path(:ua), method: :patch

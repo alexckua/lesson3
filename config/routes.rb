@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   end
   resources 'forgot_password', only: [:new, :create, :edit, :update], :path => 'forgot-password'
   root 'welcome#index'
+
+  resources :locales, only: :update
 end
