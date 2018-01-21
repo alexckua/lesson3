@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Sign Up', type: :feature do
+RSpec.feature 'Sign Up', type: :feature, js: true do
 
   let(:hron) { create(:hron) }
 

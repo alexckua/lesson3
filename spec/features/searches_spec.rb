@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Searches", type: :feature do
+RSpec.feature "Searches", type: :feature, js: true do
 
   let(:user) { create(:user) }
   let!(:message) { create(:message, text: 'test') }
