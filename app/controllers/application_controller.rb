@@ -3,7 +3,15 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
+    users_locale == "ua" ?  I18n.default_locale = :ua : I18n.default_locale
+
     I18n.locale = session[:locale] || I18n.default_locale
+  end
+
+  def users_locale
+    lang_request = request.env['HTTP_ACCEPT_LANGUAGE']
+    users_current_locale = HTTP::Accept::Languages.parse(lang_request)[1].locale
+    users_current_locale == ("ua" || "en") ? user_locale : "en"
   end
 
   def current_user
